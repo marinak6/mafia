@@ -1,0 +1,26 @@
+@import "~antd/dist/antd.css";
+
+/* Welcome */
+.welcome {
+  text-align: center;
+}
+
+.app-title {
+  font-size: 100px;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 75px;
+}
+
+.new-game-button {
+  margin-right: 20px;
+  display: inline;
+}
+
+.join-game-button {
+  display: inline;
+}
+
+.copyright-text {
+  padding-top: 50px;
+}
