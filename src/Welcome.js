@@ -8,7 +8,11 @@ export default class Welcome extends Component {
       <div className="welcome">
         <div className="app-title">Ultimate Mafia</div>
         <div className="new-game-button">
-          <Button>New Game</Button>
+          <Button
+            onClick={() => this.props.updateState("currentPage", "newgame")}
+          >
+            New Game
+          </Button>
         </div>
         <div className="join-game-button">
           <Button>Join Game</Button>
