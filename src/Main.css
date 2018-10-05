@@ -1,4 +1,5 @@
-@import "~antd/dist/antd.css";
+@import url("https://fonts.googleapis.com/css?family=Notable");
+@import url("https://fonts.googleapis.com/css?family=Bungee+Inline");
 
 /* Welcome */
 .welcome {
@@ -7,7 +8,8 @@
 
 .app-title {
   font-size: 100px;
-  text-align: center;
+  font-family: "Bungee Inline", sans-serif;
+  color: #000000;
   padding-top: 100px;
   padding-bottom: 75px;
 }
