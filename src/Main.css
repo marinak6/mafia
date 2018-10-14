@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Notable");
 @import url("https://fonts.googleapis.com/css?family=Bungee+Inline");
+@import url("https://fonts.googleapis.com/css?family=Bungee");
+
+/* General */
+.page-header {
+  text-align: center;
+  font-family: "Bungee", sans-serif;
+  font-size: 60px;
+}
 
 /* Welcome */
 .welcome {
