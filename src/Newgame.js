@@ -17,6 +17,7 @@ export default class Newgame extends Component {
             <Form.Item>
               <Input placeholder="Your Name" />
             </Form.Item>
+
             <div className="sub-header">Setting:</div>
             <Form.Item>
               <Radio.Group>
@@ -31,11 +32,16 @@ export default class Newgame extends Component {
                 </Radio>
               </Radio.Group>
             </Form.Item>
+
             <Form.Item className="newgame-buttons">
               <Button type="primary" className="create-game-button">
                 Create Game
               </Button>
-              <Button>Back</Button>
+              <Button
+                onClick={() => this.props.updateState("currentPage", "welcome")}
+              >
+                Back
+              </Button>
             </Form.Item>
           </Form>
         </div>
