@@ -2,20 +2,26 @@
 @import url("https://fonts.googleapis.com/css?family=Bungee+Inline");
 @import url("https://fonts.googleapis.com/css?family=Bungee");
 
-/* General */
+/********** General **********/
 .page-header {
   text-align: center;
   font-family: "Bungee", sans-serif;
   font-size: 60px;
   padding-top: 40px;
 }
+
 @media (max-width: 768px) {
   .page-header {
     font-size: 50px;
   }
 }
 
-/* Welcome */
+.sub-header {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/********** Welcome **********/
 .welcome {
   text-align: center;
 }
@@ -41,18 +47,23 @@
   padding-top: 50px;
 }
 
-/* Newgame */
+/********** Newgame **********/
 .newgame-form {
   margin: auto;
+  padding-top: 20px;
   padding-left: 50px;
   padding-right: 50px;
-  max-width: 500px;
+  max-width: 450px;
 }
 
 @media (max-width: 768px) {
   .newgame-form {
     max-width: 100%;
   }
+}
+
+.newgame-buttons {
+  text-align: center;
 }
 
 .create-game-button {
