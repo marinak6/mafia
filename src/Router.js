@@ -21,7 +21,7 @@ export default class App extends Component {
     if (this.state.currentPage === "welcome")
       return <Welcome updateState={this.updateState} />;
     else if (this.state.currentPage === "newgame") {
-      return <Newgame />;
+      return <Newgame updateState={this.updateState} />;
     }
   }
 }
