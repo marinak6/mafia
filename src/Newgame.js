@@ -1,8 +1,44 @@
 import React, { Component } from "react";
 import "./Main.css";
+import firebase from "./Firebase.js";
 import { Button, Form, Input, Icon, RadioGroup, Radio } from "antd";
 
 export default class Newgame extends Component {
+  pushGameCode = () => {
+    // get the current codes
+    let currentCodes = [];
+    firebase
+      .database()
+      .ref("games")
+      .on("value", snapshot => {
+        snapshot.forEach(child => {
+          currentCodes.push(child.val());
+        });
+      });
+
+    // get the code
+    let code = this.getGameCode();
+    while (currentCodes.includes(code)) {
+      code = this.getGameCode;
+    }
+    console.log(code);
+    // add the code to firebase
+    firebase
+      .database()
+      .ref("games")
+      .update(code);
+  };
+
+  getGameCode = () => {
+    return;
+    Math.random()
+      .toString(36)
+      .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15);
+  };
+
   render() {
     const radioStyle = {
       display: "block",
@@ -34,7 +70,11 @@ export default class Newgame extends Component {
             </Form.Item>
 
             <Form.Item className="newgame-buttons">
-              <Button type="primary" className="create-game-button">
+              <Button
+                type="primary"
+                onClick={() => this.pushGameCode()}
+                className="create-game-button"
+              >
                 Create Game
               </Button>
               <Button
