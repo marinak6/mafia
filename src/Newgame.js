@@ -1,3 +1,4 @@
+import firebase from "./Firebase.js";
 import React, { Component } from "react";
 import "./Main.css";
 import { Button, Form, Input, Radio, message } from "antd";
@@ -10,6 +11,62 @@ export default class Newgame extends Component {
       setting: ""
     };
   }
+  // submit necessary data onto firebase to create the game
+  // create game button
+  pushData = () => {
+    // get game code
+    let code = this.getGameCode();
+
+    let newPostKey = firebase
+      .database()
+      .ref("games")
+      .push().key;
+    let game = {
+      code: code,
+      creator: this.state.creatorName,
+      setting: this.state.setting
+    };
+    let updates = {};
+    updates[newPostKey] = game;
+    return firebase
+      .database()
+      .ref("games")
+      .update(updates);
+  };
+
+  // generate a random code
+  getGameCode = () => {
+    let exists = true;
+    let code = "";
+    while (exists) {
+      code = (
+        Math.random()
+          .toString(32)
+          .substring(2, 15) +
+        Math.random()
+          .toString(32)
+          .substring(2, 15)
+      ).substring(0, 5);
+      // make sure code does not exist in firebase
+      exists = this.codeExists(code);
+    }
+    return code;
+  };
+
+  // check if code exists in firebase (an active game uses this code)
+  codeExists = code => {
+    firebase
+      .database()
+      .ref("games")
+      .on("value", snapshot => {
+        snapshot.forEach(child => {
+          if (child.val() === code) {
+            return true;
+          }
+        });
+      });
+    return false;
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -66,7 +123,10 @@ export default class Newgame extends Component {
               <Button
                 type="primary"
                 className="create-game-button"
-                onClick={e => this.handleSubmit(e)}
+                onClick={e => {
+                  this.handleSubmit(e);
+                  this.pushData();
+                }}
               >
                 Create Game
               </Button>

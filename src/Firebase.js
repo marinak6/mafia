@@ -8,4 +8,4 @@ var config = {
   storageBucket: "mafia-f2367.appspot.com",
   messagingSenderId: "368665939999"
 };
-firebase.initializeApp(config);
+export default firebase.initializeApp(config);
