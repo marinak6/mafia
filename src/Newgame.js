@@ -11,19 +11,23 @@ export default class Newgame extends Component {
       setting: ""
     };
   }
-
-  // push game code onto firebase
-  pushGameCode = () => {
-    // get code
+  // submit necessary data onto firebase to create the game
+  // create game button
+  pushData = () => {
+    // get game code
     let code = this.getGameCode();
 
-    // add the code to firebase via a generated key to avoid overwriting data
     let newPostKey = firebase
       .database()
       .ref("games")
       .push().key;
+    let game = {
+      code: code,
+      creator: this.state.creatorName,
+      setting: this.state.setting
+    };
     let updates = {};
-    updates[newPostKey] = code;
+    updates[newPostKey] = game;
     return firebase
       .database()
       .ref("games")
@@ -118,7 +122,7 @@ export default class Newgame extends Component {
                 className="create-game-button"
                 onClick={e => {
                   this.handleSubmit(e);
-                  this.pushGameCode();
+                  this.pushData();
                 }}
               >
                 Create Game
