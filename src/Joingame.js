@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Main.css";
-import { Button, Form, Input, Radio, message } from "antd";
+import { Button, Form, Input, message } from "antd";
 
 export default class Joingame extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ export default class Joingame extends Component {
 
     // Do not let the user advance without entering a game code.
     if (this.state.gameCode === "") {
+      message.config({ maxCount: 1 });
       message.warning("Please enter a game code.");
     } else {
       return;
@@ -24,7 +25,7 @@ export default class Joingame extends Component {
   render() {
     return (
       <div>
-        <div className="page-header">Join Game</div>
+        <div className="page-header">Join a Game</div>
         <div className="joingame-form">
           <Form>
             <Form.Item>
