@@ -1,3 +1,4 @@
+import firebase from "./Firebase.js";
 import React, { Component } from "react";
 import "./Main.css";
 import { Button, Form, Input, Radio, message } from "antd";
@@ -11,39 +12,56 @@ export default class Newgame extends Component {
     };
   }
 
+  // push game code onto firebase
   pushGameCode = () => {
-    // get the current codes
-    let currentCodes = [];
+    // get code
+    let code = this.getGameCode();
+
+    // add the code to firebase via a generated key to avoid overwriting data
+    let newPostKey = firebase
+      .database()
+      .ref("games")
+      .push().key;
+    let updates = {};
+    updates[newPostKey] = code;
+    return firebase
+      .database()
+      .ref("games")
+      .update(updates);
+  };
+
+  // generate a random code
+  getGameCode = () => {
+    let exists = true;
+    let code = "";
+    while (exists) {
+      code = (
+        Math.random()
+          .toString(32)
+          .substring(2, 15) +
+        Math.random()
+          .toString(32)
+          .substring(2, 15)
+      ).substring(0, 5);
+      // make sure code does not exist in firebase
+      exists = this.codeExists(code);
+    }
+    return code;
+  };
+
+  // check if code exists in firebase (an active game uses this code)
+  codeExists = code => {
     firebase
       .database()
       .ref("games")
       .on("value", snapshot => {
         snapshot.forEach(child => {
-          currentCodes.push(child.val());
+          if (child.val() === code) {
+            return true;
+          }
         });
       });
-
-    // get the code
-    let code = this.getGameCode();
-    while (currentCodes.includes(code)) {
-      code = this.getGameCode;
-    }
-    console.log(code);
-    // add the code to firebase
-    firebase
-      .database()
-      .ref("games")
-      .update(code);
-  };
-
-  getGameCode = () => {
-    return;
-    Math.random()
-      .toString(36)
-      .substring(2, 15) +
-      Math.random()
-        .toString(36)
-        .substring(2, 15);
+    return false;
   };
 
   handleSubmit = e => {
@@ -98,7 +116,10 @@ export default class Newgame extends Component {
               <Button
                 type="primary"
                 className="create-game-button"
-                onClick={e => this.handleSubmit(e)}
+                onClick={e => {
+                  this.handleSubmit(e);
+                  this.pushGameCode();
+                }}
               >
                 Create Game
               </Button>
