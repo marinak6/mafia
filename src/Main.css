@@ -69,3 +69,24 @@
 .create-game-button {
   margin-right: 20px;
 }
+
+/********** Joingame **********/
+.joingame-form {
+  margin: auto;
+  padding: 20px 50px 0 50px;
+  max-width: 450px;
+}
+
+@media (max-width: 768px) {
+  .joingame-form {
+    max-width: 100%;
+  }
+}
+
+.joingame-buttons {
+  text-align: center;
+}
+
+.join-game-button {
+  margin-right: 20px;
+}
