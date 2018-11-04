@@ -15,7 +15,11 @@ export default class Welcome extends Component {
           </Button>
         </div>
         <div className="join-game-button">
-          <Button>Join Game</Button>
+          <Button
+            onClick={() => this.props.updateState("currentPage", "joingame")}
+          >
+            Join Game
+          </Button>
         </div>
 
         <div className="copyright-text">

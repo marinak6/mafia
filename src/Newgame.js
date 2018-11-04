@@ -71,9 +71,12 @@ export default class Newgame extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    // Do not let the user create the new game without entering their name and choosing a setting.
     if (this.state.creatorName === "") {
+      message.config({ maxCount: 1 });
       message.warning("Please enter your name.");
     } else if (this.state.setting === "") {
+      message.config({ maxCount: 1 });
       message.warning("Please choose a setting.");
     } else {
       return;
