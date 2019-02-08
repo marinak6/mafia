@@ -6,7 +6,8 @@ export default class Joingame extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameCode: ""
+      gameCode: "",
+      playerName: ""
     };
   }
 
@@ -14,7 +15,10 @@ export default class Joingame extends Component {
     e.preventDefault();
 
     // Do not let the user advance without entering a game code.
-    if (this.state.gameCode === "") {
+    if (this.state.playerName === "") {
+      message.config({ maxCount: 1 });
+      message.warning("Please enter your name.");
+    } else if (this.state.gameCode === "") {
       message.config({ maxCount: 1 });
       message.warning("Please enter a game code.");
     } else {
@@ -30,11 +34,16 @@ export default class Joingame extends Component {
           <Form>
             <Form.Item>
               <Input
+                onChange={e => this.setState({ playerName: e.target.value })}
+                placeholder="Your Name"
+              />
+            </Form.Item>
+            <Form.Item>
+              <Input
                 onChange={e => this.setState({ gameCode: e.target.value })}
                 placeholder="Game Code"
               />
             </Form.Item>
-
             <Form.Item className="joingame-buttons">
               <Button
                 onClick={e => this.handleSubmit(e)}

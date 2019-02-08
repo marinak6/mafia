@@ -22,6 +22,7 @@ export default class Newgame extends Component {
       .ref("games")
       .push().key;
     let game = {
+      numPlayers: 1,
       code: code,
       creator: this.state.creatorName,
       setting: this.state.setting
