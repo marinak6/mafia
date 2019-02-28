@@ -8,7 +8,8 @@ export default class Newgame extends Component {
     super(props);
     this.state = {
       creatorName: "",
-      setting: ""
+      setting: "",
+      gameCode: ""
     };
   }
   // submit necessary data onto firebase to create the game
@@ -16,19 +17,15 @@ export default class Newgame extends Component {
   pushData = () => {
     // get game code
     let code = this.getGameCode();
-
-    let newPostKey = firebase
-      .database()
-      .ref("games")
-      .push().key;
+    this.setState({ gameCode: code });
     let game = {
       numPlayers: 1,
-      code: code,
       creator: this.state.creatorName,
       setting: this.state.setting
     };
     let updates = {};
-    updates[newPostKey] = game;
+    this.updateGlobalStates();
+    updates[code] = game;
     return firebase
       .database()
       .ref("games")
@@ -82,6 +79,14 @@ export default class Newgame extends Component {
     } else {
       return;
     }
+  };
+
+  updateGlobalStates = () => {
+    console.log(this.state);
+    this.props.updateState("name", this.state.creatorName);
+    this.props.updateState("host", true);
+    this.props.updateState("gameCode", this.state.gameCode);
+    console.log(this.props);
   };
 
   render() {
