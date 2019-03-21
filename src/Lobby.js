@@ -7,9 +7,9 @@ export default class Newgame extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            creatorName: "",
+            creatorName: this.props.state.creatorName,
             setting: "",
-            gameCode: ""
+            gameCode: this.props.state.gameCode
         };
     }
 
@@ -17,10 +17,11 @@ export default class Newgame extends Component {
     render() {
         return (
             <div>
-                This is the lobby B-)
+                <div className="page-header" style={{ "font-size": "40px" }}> Welcome to the Lobby </div>
                 <br />
-                {this.props.state.gameCode}
-                {this.props.state.name}
+                <center>
+                    <div className="sub-header" style={{ "color": "#ff0000" }}> Game Code: {this.state.gameCode} </div>
+                </center>
             </div>
         );
     }

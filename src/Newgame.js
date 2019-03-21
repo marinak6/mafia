@@ -86,6 +86,7 @@ export default class Newgame extends Component {
     this.props.updateState("host", true);
     this.props.updateState("gameCode", this.state.gameCode);
     this.props.updateState("currentPage", "lobby");
+    this.props.updateState("creatorName", this.state.creatorName);
     console.log(this.props);
   };
 

@@ -12,7 +12,8 @@ export default class App extends Component {
       currentPage: "welcome",
       name: null,
       gameCode: null,
-      host: false
+      host: false,
+      creatorName: ""
     };
   }
   updateState = (field, newValue) => {
