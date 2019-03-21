@@ -17,14 +17,13 @@ export default class Newgame extends Component {
   pushData = () => {
     // get game code
     let code = this.getGameCode();
-    this.setState({ gameCode: code });
+    this.setState({ gameCode: code }, () => this.updateGlobalStates()); // really nifty!
     let game = {
       numPlayers: 1,
       creator: this.state.creatorName,
       setting: this.state.setting
     };
     let updates = {};
-    this.updateGlobalStates();
     updates[code] = game;
     return firebase
       .database()
@@ -86,6 +85,7 @@ export default class Newgame extends Component {
     this.props.updateState("name", this.state.creatorName);
     this.props.updateState("host", true);
     this.props.updateState("gameCode", this.state.gameCode);
+    this.props.updateState("currentPage", "lobby");
     console.log(this.props);
   };
 
