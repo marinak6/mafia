@@ -3,6 +3,7 @@ import "./Main.css";
 import Welcome from "./Welcome";
 import Newgame from "./Newgame";
 import Joingame from "./Joingame";
+import Lobby from "./Lobby";
 
 export default class App extends Component {
   constructor(props) {
@@ -28,6 +29,8 @@ export default class App extends Component {
         return <Newgame state={this.state} updateState={this.updateState} />;
       case "joingame":
         return <Joingame state={this.state} updateState={this.updateState} />;
+      case "lobby":
+        return <Lobby state={this.state} updateState={this.updateState} />;
     }
   }
 }
