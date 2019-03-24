@@ -20,8 +20,9 @@ export default class Newgame extends Component {
                 <div className="page-header" style={{ "font-size": "40px" }}> Welcome to the Lobby </div>
                 <br />
                 <center>
-                    <div className="sub-header" style={{ "color": "#ff0000" }}> Game Code: {this.state.gameCode} </div>
+                    <div className="sub-header2"> Game Code: {this.state.gameCode} </div>
                 </center>
+
             </div>
         );
     }

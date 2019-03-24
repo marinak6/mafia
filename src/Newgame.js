@@ -21,7 +21,7 @@ export default class Newgame extends Component {
     let game = {
       numPlayers: 1,
       creator: this.state.creatorName,
-      setting: this.state.setting
+      setting: this.state.setting,
     };
     let updates = {};
     updates[code] = game;
@@ -30,6 +30,18 @@ export default class Newgame extends Component {
       .ref("games")
       .update(updates);
   };
+
+  addPlayers = () => {
+    let obj = {
+      name: this.state.name
+    }
+    /*
+    firebase
+      .database()
+      .ref(this.state.gameCode + "/players")
+      .child("submissions")
+      .set(array);*/
+  }
 
   // generate a random code
   getGameCode = () => {
@@ -133,6 +145,7 @@ export default class Newgame extends Component {
                 onClick={e => {
                   this.handleSubmit(e);
                   this.pushData();
+                  this.addPlayers();
                 }}
               >
                 Create Game

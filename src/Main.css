@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Notable");
 @import url("https://fonts.googleapis.com/css?family=Bungee+Inline");
 @import url("https://fonts.googleapis.com/css?family=Bungee");
+@import url('https://fonts.googleapis.com/css?family=Bungee+Hairline');
 
 /********** General **********/
 .page-header {
@@ -21,6 +22,11 @@
   font-weight: bold;
 }
 
+.sub-header2 {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Bungee Hairline", sans-serif;
+}
 /********** Welcome **********/
 .welcome {
   text-align: center;
